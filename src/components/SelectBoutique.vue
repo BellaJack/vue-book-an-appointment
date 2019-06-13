@@ -77,8 +77,7 @@ export default {
   computed: {
     boutiquesBookable() {
       if (this.boutiques !== null && this.boutiques.length) {
-        const a = this.boutiques.filter(this.isBookable);
-        return a.sort();
+        return this.boutiques.filter(this.isBookable);
       }
       return false;
     },
@@ -93,7 +92,11 @@ export default {
             c.push(a[i]);
           }
         }
-        return c;
+        return c.sort((a, b) => {
+          if(a["wpcf-city"] < b["wpcf-city"]) { return -1; }
+          if(a["wpcf-city"] > b["wpcf-city"]) { return 1; }
+          return 0;
+        });
       }
       return false;
     },
@@ -109,7 +112,11 @@ export default {
           }
         }
 
-        return c;
+        return c.sort((a, b) => {
+          if(a.location.country.name < b.location.country.name) { return -1; }
+          if(a.location.country.name > b.location.country.name) { return 1; }
+          return 0;
+        });
       }
       return false;
     }
