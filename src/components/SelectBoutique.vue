@@ -67,6 +67,7 @@ export default {
       .get("./data/bv_stores.json")
       .then(response => {
         this.boutiques = response.data;
+        this.$store.dispatch('initBoutiques', response.data);
       })
       .catch(error => {
         this.errored = true;
