@@ -137,7 +137,7 @@ export default {
           break;
         case "boutique":
           this.boutiqueSelected.boutiqueID = value;
-          this.$store.dispatch('updateBoutique', this.boutiqueSelected);
+          this.$store.dispatch('updateBoutique', this.$store.getters.bookable.find(el => el.ID == value));
           break;
         default:
           this.boutiqueSelected.countryID = 0; 

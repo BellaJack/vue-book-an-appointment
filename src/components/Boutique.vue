@@ -1,5 +1,5 @@
 <template>
-  <div class="boutique" v-if="boutiqueSelected.ID > 0 || boutiqueSelected.ID !== 0">
+  <div class="boutique" v-if="boutiqueSelected.ID > 0 && boutiqueSelected.ID !== 0">
     <h1>Boutique</h1>
     <ul>
       <li>ID: {{boutiqueSelected.ID}}</li>
@@ -16,9 +16,7 @@ export default {
   name: 'Boutique',
   computed: { 
     boutiqueSelected() {
-      const boutiques = this.$store.getters.bookable,
-        ID = this.$store.getters.boutiqueSelected.boutiqueID;
-      return boutiques.find(el => el.ID == ID);
+      return this.$store.getters.boutiqueSelected;
     }
   }
 }
