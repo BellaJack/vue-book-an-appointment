@@ -6,7 +6,13 @@
       <li>Name: {{boutiqueSelected["post_title"]}}</li>
       <li>Lat: {{boutiqueSelected["_yoox-store-lat"]}}</li>
       <li>Long: {{boutiqueSelected["_yoox-store-lng"]}}</li>
-      <li>Store type: </li>
+      <li>Store type: 
+        <ul>
+          <li v-for="(type, index) in boutiqueSelected['store-type']" :key="index">
+            {{type['name']}}
+          </li>
+        </ul>
+      </li>
       <li>Phone: {{boutiqueSelected["wpcf-yoox-store-phone"]}}</li>
     </ul>
   </div>
