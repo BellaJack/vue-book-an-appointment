@@ -1,0 +1,27 @@
+input:not([type="submit"]),
+select,
+textarea {
+  border: 1px solid #e5e9f0;
+  color: #2a2f36;
+  display: block;
+
+  margin: {
+    bottom: 1.2rem;
+  }
+
+  min-height: 2.25rem;
+  padding: 0 5px;
+}
+
+input:not([type="submit"]),
+textarea {
+  width: calc(100% - 12px);
+}
+
+select {
+  width: 100%;
+}
+
+[type="hidden"] {
+  visibility: hidden;
+}

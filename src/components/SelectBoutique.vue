@@ -1,45 +1,53 @@
 <template>
-  <div>
-    <div v-if="loading">
-      <select @change="updateBoutique($event, 'country')" class="countryDropdown">
-        <option value="0">Select your country</option>
-        <option
-          v-for="(country, index) in countryBookable"
-          :key="index"
-          :value="country.location.country.term_id"
-        >{{country.location.country.name}}</option>
-      </select>
-      <select
-        @change="updateBoutique($event, 'city')"
-        class="cityDropdown"
-        :disabled="boutiqueSelected.countryID == 0">
-        <option value="0">Select your city</option>
-        <template v-for="(city, index) in cityBookable">
+  <div class="boutiqueSelector">
+    <section v-if="loading">
+      <header>
+        <h2>Please select a Boutique</h2>
+      </header>
+      <div class="boutiqueDropdown">
+        <select @change="updateBoutique($event, 'country')" class="countryDropdown">
+          <option value="0">Select your country</option>
           <option
-            v-if="boutiqueSelected.countryID == city.location.country.term_id"
+            v-for="(country, index) in countryBookable"
             :key="index"
-            :value="city['wpcf-city']"
-          >{{city["wpcf-city"]}}</option>
-        </template>
-      </select>
-      <select
-        @change="updateBoutique($event, 'boutique')"
-        class="boutiqueDropdown"
-        :disabled="boutiqueSelected.countryID == 0 || boutiqueSelected.cityID == 0">
-        <option value="0">Select a boutique</option>
-        <template v-for="boutique in boutiquesBookable">
-          <option
-            v-if="boutiqueSelected.cityID == boutique['wpcf-city'] && boutiqueSelected.countryID == boutique.location.country.term_id"
-            :key="boutique.ID"
-            :value="boutique.ID"
-          >{{boutique.post_title}}</option>
-        </template>
-      </select>
-    </div>
+            :value="country.location.country.term_id"
+          >{{country.location.country.name}}</option>
+        </select>
+        <select
+          @change="updateBoutique($event, 'city')"
+          class="cityDropdown"
+          :disabled="boutiqueSelected.countryID == 0">
+          <option value="0">Select your city</option>
+          <template v-for="(city, index) in cityBookable">
+            <option
+              v-if="boutiqueSelected.countryID == city.location.country.term_id"
+              :key="index"
+              :value="city['wpcf-city']"
+            >{{city["wpcf-city"]}}</option>
+          </template>
+        </select>
+        <select
+          @change="updateBoutique($event, 'boutique')"
+          class="boutiqueDropdown"
+          :disabled="boutiqueSelected.countryID == 0 || boutiqueSelected.cityID == 0">
+          <option value="0">Select a boutique</option>
+          <template v-for="boutique in boutiquesBookable">
+            <option
+              v-if="boutiqueSelected.cityID == boutique['wpcf-city'] && boutiqueSelected.countryID == boutique.location.country.term_id"
+              :key="boutique.ID"
+              :value="boutique.ID"
+            >{{boutique.post_title}}</option>
+          </template>
+        </select>
+      </div>
+    </section>
     <div v-if="errored">
-      Whoops there is some errors...
-      <hr />
-      {{ errorLabel }}
+      <header>
+        <h2>Whoops there is some errors...</h2>
+      </header>
+      <p>
+        {{ errorLabel }}
+      </p>
     </div>
   </div>
 </template>
@@ -149,11 +157,15 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-select {
-  border: 1px solid #e2e2e2;
-  height: 25px;
-  margin: 0 20px;
-  min-width: 250px;
+<style lang="scss" scoped>
+.boutiqueDropdown {
+  @media screen and (min-width: 600px) {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    select{
+      max-width: 30%;
+    }
+  }
 }
 </style>

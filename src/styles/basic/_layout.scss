@@ -1,0 +1,51 @@
+body {
+  color: #3b4252;
+  background: {
+    color: #fefefe;
+  }
+
+  font: {
+    family: 'Roboto';
+  }
+
+  line-height: 1.5;
+}
+
+header {
+  color: #03A678;
+  font: {
+    family: 'Montserrat';
+  }
+  @media screen and (max-width: 600px) {
+    text: {
+      align: center;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font: {
+    weight: 400;
+  }
+}
+
+.main {
+  margin: 0 15px;
+
+  &__header {
+    text: {
+      align: center;
+    }
+  }
+}
+
+*:disabled{
+  opacity: .5;
+  pointer-events: none;
+}
+
+@import "../components/form";
+@import "../components/boutique";
