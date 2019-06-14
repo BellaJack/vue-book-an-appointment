@@ -8,7 +8,9 @@
         <header>
           <h3>Opening Hours</h3>
         </header>
-        {{boutiqueSelected['wpcf-yoox-store-hours']}}
+        <p style="white-space: pre-line">
+          {{boutiqueSelected['wpcf-yoox-store-hours']}}
+        </p>
       </div>
       <div>
         <header>
@@ -24,7 +26,7 @@
             {{boutiqueSelected["wpcf-yoox-store-email"]}}
           </li>
           <li
-            v-if="boutiqueSelected['wpcf-yoox-store-email-manager'] !== '' && boutiqueSelected['wpcf-yoox-store-email-manager'] !== null"
+            v-if="boutiqueSelected['wpcf-yoox-store-email-manager']"
           >
             <span>Store Manager:</span>
             {{boutiqueSelected["wpcf-yoox-store-email-manager"]}}
