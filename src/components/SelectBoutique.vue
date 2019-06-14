@@ -65,8 +65,8 @@ export default {
     axios
       .get("./data/bv_stores.json")
       .then(response => {
-        this.$store.dispatch('initBoutiques', response.data);
-        this.filterBookable();
+        //this.$store.dispatch('initBoutiques', response.data);
+        this.filterBookable(response.data);
       })
       .catch(error => {
         this.errored = true;
@@ -81,15 +81,15 @@ export default {
     cityBookable() {
       const boutiques = this.$store.getters.bookable;
       if (boutiques !== null && boutiques.length) {
-        const b = [],
-          c = [];
+        const city = [],
+          cityFiltered = [];
         for (let i = 0; i < boutiques.length; i++) {
-          if (!b.includes(boutiques[i]["wpcf-city"])) {
-            b.push(boutiques[i]["wpcf-city"]);
-            c.push(boutiques[i]);
+          if (!city.includes(boutiques[i]["wpcf-city"])) {
+            city.push(boutiques[i]["wpcf-city"]);
+            cityFiltered.push(boutiques[i]);
           }
         }
-        return c.sort((x, y) => {
+        return cityFiltered.sort((x, y) => {
           if(x["wpcf-city"] < y["wpcf-city"]) { return -1; }
           if(x["wpcf-city"] > y["wpcf-city"]) { return 1; }
           return 0;
@@ -100,16 +100,16 @@ export default {
     countryBookable() {
       const boutiques = this.$store.getters.bookable;
       if (boutiques !== null && boutiques.length) {
-        const b = [],
-          c = [];
+        const country = [],
+          countryFiltered = [];
         for (let i = 0; i < boutiques.length; i++) {
-          if (!b.includes(boutiques[i].location.country.name)) {
-            b.push(boutiques[i].location.country.name);
-            c.push(boutiques[i]);
+          if (!country.includes(boutiques[i].location.country.name)) {
+            country.push(boutiques[i].location.country.name);
+            countryFiltered.push(boutiques[i]);
           }
         }
 
-        return c.sort((x, y) => {
+        return countryFiltered.sort((x, y) => {
           if(x.location.country.name < y.location.country.name) { return -1; }
           if(x.location.country.name > y.location.country.name) { return 1; }
           return 0;
@@ -119,8 +119,8 @@ export default {
     }
   },
   methods: {
-    filterBookable(){
-      const boutiques = this.$store.getters.boutiques;
+    filterBookable(boutiques){
+      //const boutiques = this.$store.getters.boutiques;
       if (boutiques !== null && boutiques.length) {
         this.$store.dispatch('initBookable', boutiques.filter(this.isBookable));
       }
