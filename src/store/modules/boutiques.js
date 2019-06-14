@@ -1,7 +1,7 @@
 const state = {
   boutiques: [],
   bookable: [],
-  boutiqueSelected: null
+  boutiqueSelected: "ciao"
 };
 
 const mutations = {
@@ -34,6 +34,9 @@ const getters = {
   },
   bookable: state => {
     return state.bookable;
+  },
+  boutiqueSelected: state => {
+    return state.boutiqueSelected
   }
 };
 

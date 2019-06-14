@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <SelectBoutique/>
+    <Boutique/>
   </div>
 </template>
 
 <script>
 import SelectBoutique from './components/SelectBoutique.vue'
+import Boutique from './components/Boutique'
 
 export default {
   name: 'app',
   components: {
-    SelectBoutique
+    SelectBoutique,
+    Boutique
   }
 }
 </script>

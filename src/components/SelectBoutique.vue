@@ -35,8 +35,6 @@
           >{{boutique.post_title}}</option>
         </template>
       </select>
-      <hr />
-      Boutique selected: {{boutiqueSelected.boutiqueID}}
     </div>
     <div v-if="errored">
       Whoops there is some errors...
@@ -139,6 +137,7 @@ export default {
           break;
         case "boutique":
           this.boutiqueSelected.boutiqueID = value;
+          this.$store.dispatch('updateBoutique', this.boutiqueSelected);
           break;
         default:
           this.boutiqueSelected.countryID = 0; 
@@ -146,7 +145,6 @@ export default {
           this.boutiqueSelected.boutiqueID = 0;
           break
       }
-      this.$store.dispatch('updateBoutique', this.boutiqueSelected);
     }
   }
 };
