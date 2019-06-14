@@ -53,7 +53,6 @@ export default {
     return {
       loading: false,
       errored: false,
-      boutiques: null,
       errorLabel: "",
       boutiqueSelected: {
         countryID: 0,
@@ -66,8 +65,8 @@ export default {
     axios
       .get("./data/bv_stores.json")
       .then(response => {
-        this.boutiques = response.data;
         this.$store.dispatch('initBoutiques', response.data);
+        this.filterBookable();
       })
       .catch(error => {
         this.errored = true;
@@ -77,45 +76,42 @@ export default {
   },
   computed: {
     boutiquesBookable() {
-      if (this.boutiques !== null && this.boutiques.length) {
-        return this.boutiques.filter(this.isBookable);
-      }
-      return false;
+      return this.$store.getters.bookable;
     },
     cityBookable() {
-      if (this.boutiques !== null && this.boutiques.length) {
-        const a = this.boutiques.filter(this.isBookable),
-          b = [],
+      const boutiques = this.$store.getters.bookable;
+      if (boutiques !== null && boutiques.length) {
+        const b = [],
           c = [];
-        for (let i = 0; i < a.length; i++) {
-          if (!b.includes(a[i]["wpcf-city"])) {
-            b.push(a[i]["wpcf-city"]);
-            c.push(a[i]);
+        for (let i = 0; i < boutiques.length; i++) {
+          if (!b.includes(boutiques[i]["wpcf-city"])) {
+            b.push(boutiques[i]["wpcf-city"]);
+            c.push(boutiques[i]);
           }
         }
-        return c.sort((a, b) => {
-          if(a["wpcf-city"] < b["wpcf-city"]) { return -1; }
-          if(a["wpcf-city"] > b["wpcf-city"]) { return 1; }
+        return c.sort((x, y) => {
+          if(x["wpcf-city"] < y["wpcf-city"]) { return -1; }
+          if(x["wpcf-city"] > y["wpcf-city"]) { return 1; }
           return 0;
         });
       }
       return false;
     },
     countryBookable() {
-      if (this.boutiques !== null && this.boutiques.length) {
-        const a = this.boutiques.filter(this.isBookable),
-          b = [],
+      const boutiques = this.$store.getters.bookable;
+      if (boutiques !== null && boutiques.length) {
+        const b = [],
           c = [];
-        for (let i = 0; i < a.length; i++) {
-          if (!b.includes(a[i].location.country.name)) {
-            b.push(a[i].location.country.name);
-            c.push(a[i]);
+        for (let i = 0; i < boutiques.length; i++) {
+          if (!b.includes(boutiques[i].location.country.name)) {
+            b.push(boutiques[i].location.country.name);
+            c.push(boutiques[i]);
           }
         }
 
-        return c.sort((a, b) => {
-          if(a.location.country.name < b.location.country.name) { return -1; }
-          if(a.location.country.name > b.location.country.name) { return 1; }
+        return c.sort((x, y) => {
+          if(x.location.country.name < y.location.country.name) { return -1; }
+          if(x.location.country.name > y.location.country.name) { return 1; }
           return 0;
         });
       }
@@ -123,6 +119,12 @@ export default {
     }
   },
   methods: {
+    filterBookable(){
+      const boutiques = this.$store.getters.boutiques;
+      if (boutiques !== null && boutiques.length) {
+        this.$store.dispatch('initBookable', boutiques.filter(this.isBookable));
+      }
+    },
     isBookable(el) {
       return el["wpcf-yoox-store-bookable"] > 0;
     },
@@ -144,6 +146,7 @@ export default {
           this.boutiqueSelected.boutiqueID = 0;
           break
       }
+      this.$store.dispatch('updateBoutique', this.boutiqueSelected);
     }
   }
 };
