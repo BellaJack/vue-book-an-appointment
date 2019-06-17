@@ -6,19 +6,6 @@
       </header>
       <SelectBoutique/>
       <div class="boutiqueWrap">
-        <!--div class="boutique__img">
-          <img
-            src="/img/768.jpg"
-            srcset="/img/320.jpg 320w,
-              /img/375.jpg 375w,
-              /img/640.jpg 640w,
-              /img/720.jpg 720w,
-              /img/768.jpg 768w,
-              /img/1024.jpg 1024w,
-              /img/1280.jpg 1280w,
-              /img/1920.jpg 1920w"
-            alt="Boutique interior" />
-        </div-->
         <transition name="slide" mode="out-in">
           <Boutique/>
         </transition>

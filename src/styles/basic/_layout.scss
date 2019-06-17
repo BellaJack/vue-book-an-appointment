@@ -1,20 +1,20 @@
 body {
-  color: #3b4252;
+  color: #202020;//#3b4252;
   background: {
     color: #fefefe;
   }
 
   font: {
-    family: 'Roboto';
+    family: 'Roboto Mono';
   }
 
   line-height: 1.5;
 }
 
 header {
-  color: #03A678;
+  color: #000;//#03A678;
   font: {
-    family: 'Montserrat';
+    family: 'Roboto Slab';
   }
   @media screen and (max-width: 600px) {
     text: {
@@ -32,12 +32,33 @@ h4 {
   }
 }
 
+strong {
+  font: {
+    weight: 500;
+  }
+}
+
+h2{
+  font: {
+    size: 2em;
+  }
+}
+
 .main {
   margin: 0 15px;
 
   &__header {
+    height: 50px;
     text: {
       align: center;
+      transform: uppercase;
+    }
+    h1{
+      font: {
+        size: 1em;
+      }
+      line-height: 50px;
+      margin: 0;
     }
   }
 }

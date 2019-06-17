@@ -1,7 +1,7 @@
 const state = {
   boutiques: [],
   bookable: [],
-  boutiqueSelected: "ciao"
+  boutiqueSelected: ""
 };
 
 const mutations = {
@@ -24,7 +24,7 @@ const actions = {
     commit('SET_BOOKABLE', boutiques);
   },
   updateBoutique: ({commit}, boutique) => {
-    commit('UPDATE_BOUTIQUE_SELECTED', boutique)
+    commit('UPDATE_BOUTIQUE_SELECTED', boutique);
   }
 }
 

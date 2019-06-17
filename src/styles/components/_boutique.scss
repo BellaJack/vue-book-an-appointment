@@ -1,16 +1,6 @@
 .boutiqueWrap {
-  @media screen and (min-width: 600px) {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
-}
-
-.boutique,
-.form {
-  @media screen and (min-width: 600px) {
-    width: calc(50% - 15px);
-  }
+  margin: 0 auto;
+  max-width: 960px;
 }
 
 .boutique {
@@ -29,18 +19,100 @@
         align: left;
       }
     }
+
+    @media screen and (min-width: 600px) {
+      display: grid;
+      grid-template-columns: calc(50% - 10px) 20px calc(50% - 10px);
+      grid-template-areas: "col-1 . col-2""main main main";
+    }
+
+    &__block {
+      h3 {
+        border: {
+          bottom: 1px solid #000;
+        }
+
+        margin: {
+          bottom: 0;
+        }
+
+        padding: {
+          bottom: .7em;
+        }
+      }
+
+      &--contacts {
+        @media screen and (min-width: 600px) {
+          grid-column-start: 1;
+          grid-column-end: -1;
+        }
+      }
+
+      &--hours {
+        @media screen and (min-width: 600px) {
+          grid-area: col-1;
+        }
+
+        +.boutique__info__block--contacts {
+          grid-area: col-2;
+        }
+      }
+
+      &--types {
+        @media screen and (min-width: 600px) {
+          grid-area: main;
+        }
+
+        h4 {
+          font: {
+            weight: 700;
+          }
+        }
+
+        ul {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        li {
+          border: 1px solid #b4b4b4;
+
+          font: {
+            size: .875em;
+          }
+
+          margin: 0 10px 10px 0;
+          padding: 5px;
+
+          @media screen and (min-width: 600px) {
+            border-radius: 35px 0 0 35px;
+            padding: 5px 7px 5px 30px;
+            position: relative;
+
+            &::before {
+              content: "\2022";
+
+              font: {
+                size: 1.5em;
+              }
+
+              left: 11px;
+              position: absolute;
+              top: -1px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form {
+  border: {
+    top: 1px solid #e5e9f0;
   }
 
-  &__types {
-    ul {
-      display: flex;
-      flex-flow: row wrap;
-    }
-    li {
-      border: 1px solid #e5e9f0;
-      border-radius: 3px;
-      margin: 0 10px 10px 0;
-      padding: 5px;
-    }
+  padding: {
+    bottom: 3em;
   }
 }

@@ -1,0 +1,99 @@
+.boutiqueSelector {
+  &__wrap {
+    background: {
+      color: #000;
+    }
+
+    display: flex;
+    flex-flow: column;
+    height: calc(100vh - 50px);
+    justify-content: center;
+    margin: 0 -15px;
+    position: relative;
+    overflow-y: hidden;
+
+    &::after {
+      background: {
+        color: rgba(0, 0, 0, .62);
+      }
+
+      content: "";
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+    }
+
+    @media screen and (min-width: 600px) {
+      height: 400px;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    z-index: 1;
+
+    figure {
+      margin: 0;
+    }
+
+    img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  &__box {
+    margin: 0 25px;
+    position: relative;
+    top: 0;
+    z-index: 3;
+
+    h2 {
+      color: #fff;
+
+      font: {
+        size: 1.25em;
+      }
+
+      text: {
+        align: center;
+      }
+    }
+
+    select {
+      margin: {
+        bottom: 25px;
+      }
+    }
+
+    @media screen and (min-width: 600px) {
+      margin: 0 auto;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    @media screen and (min-width: 1024px) {
+      max-width: 940px;
+    }
+  }
+}
+
+.boutiqueDropdown {
+  @media screen and (min-width: 600px) {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+
+    select {
+      max-width: 220px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    select {
+      max-width: 300px;
+    }
+  }
+}

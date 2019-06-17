@@ -1,3 +1,9 @@
+label {
+  font: {
+    weight: 500;
+  }
+}
+
 input:not([type="submit"]),
 select,
 textarea {
@@ -22,6 +28,34 @@ select {
   width: 100%;
 }
 
+textarea{
+  height: 200px;
+}
+
 [type="hidden"] {
   visibility: hidden;
+}
+
+[type="submit"] {
+
+  background: {
+    color: #000;
+  }
+
+  border: 0;
+  color: #fff;
+
+  font: {
+    family: 'Roboto Slab';
+  }
+  margin: {
+    top: 1em;
+  }
+  padding: 10px 5px;
+
+  text: {
+    transform: uppercase;
+  }
+
+  width: 100%;
 }

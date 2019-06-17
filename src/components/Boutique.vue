@@ -4,36 +4,34 @@
       <h2>{{boutiqueSelected["post_title"]}}</h2>
     </header>
     <div class="boutique__info">
-      <div>
+      <div class="boutique__info__block boutique__info__block--hours" v-if="boutiqueSelected['wpcf-yoox-store-hours']">
         <header>
           <h3>Opening Hours</h3>
         </header>
-        <p style="white-space: pre-line">
-          {{boutiqueSelected['wpcf-yoox-store-hours']}}
-        </p>
+        <p style="white-space: pre-line">{{boutiqueSelected['wpcf-yoox-store-hours']}}</p>
       </div>
-      <div>
+      <div class="boutique__info__block boutique__info__block--contacts">
         <header>
           <h3>Contacts</h3>
         </header>
         <ul>
           <li>
-            <span>Phone:</span>
-            {{boutiqueSelected["wpcf-yoox-store-phone"]}}
+            <span style="white-space: pre-line"><strong>Address:</strong> {{boutiqueSelected["wpcf-yoox-store-address"]}}, {{boutiqueSelected["wpcf-city"]}}</span>
           </li>
           <li>
-            <span>Store Email:</span>
-            {{boutiqueSelected["wpcf-yoox-store-email"]}}
+            <strong>Phone:</strong> {{boutiqueSelected["wpcf-yoox-store-phone"]}}
+          </li>
+          <li>
+            <strong>Store Email:</strong> {{boutiqueSelected["wpcf-yoox-store-email"]}}
           </li>
           <li
             v-if="boutiqueSelected['wpcf-yoox-store-email-manager']"
           >
-            <span>Store Manager:</span>
-            {{boutiqueSelected["wpcf-yoox-store-email-manager"]}}
+            <strong>Store Manager:</strong> {{boutiqueSelected["wpcf-yoox-store-email-manager"]}}
           </li>
         </ul>
       </div>
-      <div class="boutique__types">
+      <div class="boutique__info__block boutique__info__block--types">
         <header>
           <h3>Store types</h3>
         </header>
