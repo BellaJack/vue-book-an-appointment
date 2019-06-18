@@ -1,0 +1,23 @@
+.something{
+  @media screen and (min-width: 600px) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 960px;
+  }
+}
+
+.boutique-card{
+  @media screen and (min-width: 600px) {
+    border: 1px solid #000;
+    margin: {
+      bottom: 20px;
+    }
+    padding: 0 20px 2.5em;
+    width: calc(33.333333% - 55px);
+  }
+  &__address {
+    white-space: pre-line;
+  }
+}
