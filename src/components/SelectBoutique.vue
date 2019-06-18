@@ -82,12 +82,16 @@ export default {
         countryID: 0,
         cityID: 0,
         boutiqueID: 0
-      }
+      },
+      isoCode: "us",
+      storesUrl: "https://www.bottegaveneta.com/experience/",//"./data/bv_stores.json"
+      storesQuery: "/?yoox_storelocator_action=true&action=yoox_storelocator_get_all_stores"
     };
   },
   created() {
+    const ajaxUrl = this.storesUrl + this.isoCode + this.storesQuery;
     axios
-      .get("./data/bv_stores.json")
+      .get(ajaxUrl)
       .then(response => {
         //this.$store.dispatch('initBoutiques', response.data);
         this.filterBookable(response.data);
