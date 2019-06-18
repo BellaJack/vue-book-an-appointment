@@ -41,7 +41,7 @@
               <h4>Women</h4>
             </header>
             <ul>
-              <li v-for="(type, index) in womenType" :key="index">{{type['name']}}</li>
+              <router-link class="boutique__info__type" tag="li" to="/archive" v-for="(type, index) in womenType" :key="index">{{type['name']}}</router-link> 
             </ul>
           </div>
           <div v-if="menType.length > 0">
@@ -49,7 +49,7 @@
               <h4>Men</h4>
             </header>
             <ul>
-              <li v-for="(type, index) in menType" :key="index">{{type['name']}}</li>
+              <router-link class="boutique__info__type" tag="li" to="/archive" v-for="(type, index) in menType" :key="index">{{type['name']}}</router-link>
             </ul>
           </div>
         </div>

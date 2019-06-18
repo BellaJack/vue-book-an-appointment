@@ -104,6 +104,14 @@
         }
       }
     }
+    &__type{
+      cursor: pointer;
+      &:hover{
+        background: {
+          color: #e5e9f0;
+        }
+      }
+    }
   }
 }
 
