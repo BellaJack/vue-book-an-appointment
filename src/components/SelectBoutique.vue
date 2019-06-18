@@ -61,6 +61,9 @@
         </div>
       </div>
     </section>
+    <div v-else>
+      Loading...
+    </div>
     <div v-if="errored">
       <header>
         <h2>Whoops there is some errors...</h2>

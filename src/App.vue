@@ -4,31 +4,20 @@
       <header class="main__header">
         <h1>Vue(k) an appointment</h1>
       </header>
-      <SelectBoutique/>
-      <div class="boutiqueWrap">
-        <transition name="slide" mode="out-in">
-          <Boutique/>
-        </transition>
-        <transition name="slide" mode="out-in">
-          <Form/>
-        </transition>
-      </div>
+      <router-link tag="li" activeClass="active" to="/">
+        <a>Selector</a>
+      </router-link>
+      <router-link tag="li" activeClass="active" to="/archive">
+        <a>Archive</a>
+      </router-link>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import SelectBoutique from "./components/SelectBoutique.vue";
-import Boutique from "./components/Boutique";
-import Form from "./components/Form";
-
 export default {
-  name: "app",
-  components: {
-    SelectBoutique,
-    Boutique,
-    Form
-  }
+  name: "app"
 };
 </script>
 <style lang="scss">
