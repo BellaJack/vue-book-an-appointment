@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="archive">
     <header>
       <h2>Archive</h2>
     </header>
@@ -9,7 +9,7 @@
           <Card v-for="boutique in tagged" :key="boutique.ID" :boutique="boutique" />
         </template>
         <div v-else>
-          No result
+          No results found
         </div>
       </template>
       <template v-else>

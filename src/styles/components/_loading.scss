@@ -1,0 +1,17 @@
+.loading {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  height: calc(100vh - 120px);
+  justify-content: center;
+
+  +.boutiqueWrap {
+    display: none;
+  }
+}
+
+.loader {
+  font: {
+    size: 2em;
+  }
+}

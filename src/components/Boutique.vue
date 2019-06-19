@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="noSelected">
       <header>
         <h2>No boutique loaded</h2>
       </header>

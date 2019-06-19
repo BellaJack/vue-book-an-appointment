@@ -104,13 +104,23 @@
         }
       }
     }
-    &__type{
+
+    &__type {
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         background: {
           color: #e5e9f0;
         }
       }
+    }
+  }
+}
+
+.noSelected {
+  header {
+    text: {
+      align: center;
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="boutiqueSelector">
-    <section v-if="loading" class="boutiqueSelector__wrap">
+  <div class="boutiqueSelector" :class="{'loading': !loaded}">
+    <section v-if="loaded" class="boutiqueSelector__wrap">
       <div class="boutiqueSelector__img">
         <figure>
           <img
@@ -61,7 +61,7 @@
         </div>
       </div>
     </section>
-    <div v-else>
+    <div class="loader" v-else>
       Loading...
     </div>
     <div v-if="errored">
@@ -78,7 +78,7 @@ export default {
   name: "SelectBoutique",
   data() {
     return {
-      loading: false,
+      loaded: false,
       errored: false,
       errorLabel: "",
       boutiqueSelected: {
@@ -103,7 +103,7 @@ export default {
         this.errored = true;
         this.errorLabel = error;
       })
-      .finally(() => (this.loading = true));
+      .finally(() => (this.loaded = true));
   },
   computed: {
     boutiquesBookable() {

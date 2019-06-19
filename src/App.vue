@@ -4,13 +4,15 @@
       <header class="main__header">
         <h1>Vue(k) an appointment</h1>
       </header>
-      <router-link tag="li" activeClass="active" to="/">
-        <a>Selector</a>
-      </router-link>
-      <router-link tag="li" activeClass="active" to="/archive">
-        <a>Archive</a>
-      </router-link>
       <router-view></router-view>
+      <footer class="main__footer">
+        <router-link activeClass="active" to="/">
+          Select a Boutique
+        </router-link>
+        <router-link activeClass="active" to="/archive">
+          Archive
+        </router-link>
+      </footer>
     </div>
   </div>
 </template>
