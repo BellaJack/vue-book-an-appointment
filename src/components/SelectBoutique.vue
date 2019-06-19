@@ -93,7 +93,11 @@ export default {
   },
   created() {
     const ajaxUrl = this.storesUrl + this.isoCode + this.storesQuery;
-    axios
+
+    if(this.$store.getters.bookable.length){
+      this.loaded = true;
+    }else{
+      axios
       .get(ajaxUrl)
       .then(response => {
         //this.$store.dispatch('initBoutiques', response.data);
@@ -104,6 +108,9 @@ export default {
         this.errorLabel = error;
       })
       .finally(() => (this.loaded = true));
+    }
+
+    
   },
   computed: {
     boutiquesBookable() {
