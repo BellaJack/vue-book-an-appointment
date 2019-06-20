@@ -1,7 +1,7 @@
 <template>
   <div class="archive">
     <header>
-      <h2>Archive</h2>
+      <h2>{{typeName}}</h2>
     </header>
     <div class="something">
       <template v-if="typeID !== undefined && typeID !== ''">
@@ -28,6 +28,14 @@ export default {
     }),
     typeID(){
       return this.$route.params.id
+    },
+    typeName() {
+      const name = this.$route.params.name;
+      if(name !== '' && name !== undefined) {
+        return '#' + name;
+      }else{
+        return 'Archive';
+      }
     },
     tagged() {
       const a = this.$store.getters.bookable,

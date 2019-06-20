@@ -46,9 +46,9 @@
                 :key="index"
                 class="boutique__info__type"
                 tag="li"
-                :to="{ name: 'type', params:{id: type.term_id}}"
+                :to="{ name: 'type', params:{id: type.term_id, name: type.name}}"
               >
-                  {{type['name']}}
+                  {{type.name}}
               </router-link> 
             </ul>
           </div>
@@ -62,9 +62,9 @@
                 :key="index"
                 class="boutique__info__type" 
                 tag="li" 
-                :to="{ name: 'type', params:{id: type.term_id}}" 
+                :to="{ name: 'type', params:{id: type.term_id, name: type.name}}" 
               >
-                {{type['name']}}
+                {{type.name}}
               </router-link>
             </ul>
           </div>

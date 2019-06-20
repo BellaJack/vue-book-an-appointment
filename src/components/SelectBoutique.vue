@@ -109,7 +109,6 @@ export default {
       })
       .finally(() => (this.loaded = true));
     }
-
     
   },
   computed: {
