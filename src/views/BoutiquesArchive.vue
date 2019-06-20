@@ -6,50 +6,55 @@
     <div class="something">
       <template v-if="typeID !== undefined && typeID !== ''">
         <template v-if="tagged.length">
-          <Card v-for="boutique in tagged" :key="boutique.ID" :boutique="boutique" />
+          <Card v-for="boutique in tagged" :key="boutique.ID" :boutique="boutique"/>
         </template>
-        <div v-else>
-          No results found
-        </div>
+        <div v-else>No results found</div>
       </template>
       <template v-else>
-        <Card v-for="boutique in boutiques" :key="boutique.ID" :boutique="boutique" />
+        <Card v-for="boutique in boutiques" :key="boutique.ID" :boutique="boutique"/>
       </template>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import Card from "../components/BoutiqueCard.vue";
 export default {
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   computed: {
     ...mapGetters({
-      boutiques: 'bookable'
+      boutiques: "bookable"
     }),
-    typeID(){
-      return this.$route.params.id
+    typeID() {
+      return this.$route.params.id;
     },
     typeName() {
       const name = this.$route.params.name;
-      if(name !== '' && name !== undefined) {
-        return '#' + name;
-      }else{
-        return 'Archive';
+      if (name !== "" && name !== undefined) {
+        return "#" + name;
+      } else {
+        return "Archive";
       }
     },
     tagged() {
       const a = this.$store.getters.bookable,
-        ID = this.$route.params.id;
+        ID = this.$route.params.id,
+        b = [];
 
-      return a.filter(el => {
-        for(let i = 0; i < el["store-type"].length; i++) {
-          return el["store-type"][i].term_id == ID;
+      for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < a[i]["store-type"].length; j++) {
+          if (a[i]["store-type"][j].term_id == ID) {
+            b.push(a[i]);
+          }
         }
-      });
+      }
+      return b;
     }
   },
   components: {
     Card
   }
-}
+};
 </script>

@@ -22,17 +22,21 @@
           <h2>Please select a Boutique</h2>
         </header>
         <div class="boutiqueDropdown">
-          <select @change="updateBoutique($event, 'country')" class="countryDropdown">
+          <select
+            @change="updateBoutique($event, 'country')"
+            id="countryDropdown"
+          >
             <option value="0">Select your country</option>
             <option
               v-for="(country, index) in countryBookable"
               :key="index"
               :value="country.location.country.term_id"
+              :selected="country.location.country.term_id == boutiqueSelected.countryID"
             >{{country.location.country.name}}</option>
           </select>
           <select
             @change="updateBoutique($event, 'city')"
-            class="cityDropdown"
+            id="cityDropdown"
             :disabled="boutiqueSelected.countryID == 0"
           >
             <option value="0">Select your city</option>
@@ -41,12 +45,13 @@
                 v-if="boutiqueSelected.countryID == city.location.country.term_id"
                 :key="index"
                 :value="city['wpcf-city']"
+                :selected="city['wpcf-city'] == boutiqueSelected.cityID"
               >{{city["wpcf-city"]}}</option>
             </template>
           </select>
           <select
             @change="updateBoutique($event, 'boutique')"
-            class="boutiqueDropdown"
+            id="storeDropdown"
             :disabled="boutiqueSelected.countryID == 0 || boutiqueSelected.cityID == 0"
           >
             <option value="0">Select a boutique</option>
@@ -55,6 +60,7 @@
                 v-if="boutiqueSelected.cityID == boutique['wpcf-city'] && boutiqueSelected.countryID == boutique.location.country.term_id"
                 :key="boutique.ID"
                 :value="boutique.ID"
+                :selected="boutique.ID == boutiqueSelected.boutiqueID"
               >{{boutique.post_title}}</option>
             </template>
           </select>
@@ -74,6 +80,7 @@
 </template>
 <script>
 import axios from "axios";
+import { setTimeout } from 'timers';
 export default {
   name: "SelectBoutique",
   data() {
@@ -110,6 +117,18 @@ export default {
       .finally(() => (this.loaded = true));
     }
     
+  },
+  mounted() {
+    if(this.$store.getters.bookable.length){
+      window.scrollTo(0,0);
+      this.boutiqueSelected.countryID = this.$route.params.country;
+      this.boutiqueSelected.cityID = this.$route.params.city;
+      this.boutiqueSelected.boutiqueID = this.$route.params.store;
+      this.$store.dispatch(
+        "updateBoutique",
+        this.$store.getters.bookable.find(el => el.ID == this.boutiqueSelected.boutiqueID)
+      );
+    }
   },
   computed: {
     boutiquesBookable() {
