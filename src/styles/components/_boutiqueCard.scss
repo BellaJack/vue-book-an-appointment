@@ -10,7 +10,10 @@
 
 .boutique-card {
   @media screen and (min-width: 600px) {
-    border: 1px solid #000;
+    background: {
+      color: $white;
+    }
+    border: 1px solid $black;
     margin: 0 10px 20px;
     padding: 0 20px 2.5em;
     width: calc(33.333333% - 62px);
@@ -22,7 +25,7 @@
 
   &__book {
     border: {
-      top: 1px solid #000;
+      top: 1px solid $black;
     }
 
     margin: {
@@ -33,7 +36,7 @@
       top: 2em;
     }
     a {
-      color: #000;
+      color: $black;
     }
   }
 }

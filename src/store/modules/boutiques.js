@@ -40,7 +40,15 @@ const getters = {
     return state.boutiques;
   },
   bookable: state => {
-    return state.bookable;
+    return state.bookable.sort((a, b) => {
+      if(a.post_title < b.post_title) {
+        return -1;
+      }
+      if(a.post_title > b.post_title) {
+        return 1;
+      }
+      return 0;
+    });
   },
   boutiqueSelected: state => {
     return state.boutiqueSelected

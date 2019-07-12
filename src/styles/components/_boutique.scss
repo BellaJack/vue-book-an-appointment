@@ -106,12 +106,19 @@
     }
 
     &__type {
+      background: {
+        color: $white;
+      }
       cursor: pointer;
 
       &:hover {
         background: {
-          color: #e5e9f0;
+          color: $black;
         }
+        border: {
+          color: #000;
+        }
+        color: $white;
       }
     }
   }
