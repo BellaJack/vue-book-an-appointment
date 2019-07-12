@@ -1,7 +1,8 @@
 const state = {
   boutiques: [],
   bookable: [],
-  boutiqueSelected: ""
+  boutiqueSelected: "",
+  cityBookable: []
 };
 
 const mutations = {
@@ -13,6 +14,9 @@ const mutations = {
   },
   'UPDATE_BOUTIQUE_SELECTED' (state, boutique) {
     state.boutiqueSelected = boutique;
+  },
+  'SET_CITY_BOOKABLE' (state, cities) {
+    state.cityBookable = cities;
   }
 };
 
@@ -25,6 +29,9 @@ const actions = {
   },
   updateBoutique: ({commit}, boutique) => {
     commit('UPDATE_BOUTIQUE_SELECTED', boutique);
+  },
+  initCities: ({commit}, cities) => {
+    commit('SET_CITY_BOOKABLE', cities);
   }
 }
 
@@ -37,6 +44,9 @@ const getters = {
   },
   boutiqueSelected: state => {
     return state.boutiqueSelected
+  },
+  cityBookable: state => {
+    return state.cityBookable
   }
 };
 

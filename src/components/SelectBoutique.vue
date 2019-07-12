@@ -135,25 +135,9 @@ export default {
       return this.$store.getters.bookable;
     },
     cityBookable() {
-      const boutiques = this.$store.getters.bookable;
-      if (boutiques !== null && boutiques.length) {
-        const city = [],
-          cityFiltered = [];
-        for (let i = 0; i < boutiques.length; i++) {
-          if (!city.includes(boutiques[i]["wpcf-city"])) {
-            city.push(boutiques[i]["wpcf-city"]);
-            cityFiltered.push(boutiques[i]);
-          }
-        }
-        return cityFiltered.sort((x, y) => {
-          if (x["wpcf-city"] < y["wpcf-city"]) {
-            return -1;
-          }
-          if (x["wpcf-city"] > y["wpcf-city"]) {
-            return 1;
-          }
-          return 0;
-        });
+      const cities = this.$store.getters.cityBookable;
+      if (cities !== null && cities.length) {
+        return cities;
       }
       return false;
     },
@@ -187,10 +171,37 @@ export default {
       //const boutiques = this.$store.getters.boutiques;
       if (boutiques !== null && boutiques.length) {
         this.$store.dispatch("initBookable", boutiques.filter(this.isBookable));
+        this.updateCityBookable();
       }
     },
     isBookable(el) {
       return el["wpcf-yoox-store-bookable"] > 0;
+    },
+    updateCityBookable() {
+      const boutiques = this.$store.getters.bookable;
+      if (boutiques !== null && boutiques.length) {
+        const city = [],
+          cityFiltered = [];
+        for (let i = 0; i < boutiques.length; i++) {
+          if (!city.includes(boutiques[i]["wpcf-city"])) {
+            city.push(boutiques[i]["wpcf-city"]);
+            cityFiltered.push(boutiques[i]);
+          }
+        }
+
+        cityFiltered.sort((x, y) => {
+          if (x["wpcf-city"] < y["wpcf-city"]) {
+            return -1;
+          }
+          if (x["wpcf-city"] > y["wpcf-city"]) {
+            return 1;
+          }
+          return 0;
+        });
+
+        this.$store.dispatch("initCities", cityFiltered);
+
+      }
     },
     updateBoutique(e, scope) {
       const value = e.target.value;

@@ -1,8 +1,8 @@
 body {
-  color: #202020; //#3b4252;
+  color: $black; //#3b4252;
 
   background: {
-    color: #fefefe;
+    color: $white;
   }
 
   font: {
@@ -88,7 +88,7 @@ h2 {
     width: 100%;
 
     a {
-      color: #fff;
+      color: $white;
       margin: .5em 0;
     }
 
