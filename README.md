@@ -1,6 +1,6 @@
 # Vue Book An Appointment
 
-Book an appointment in Boutique with Wbue
+Book an appointment in Boutique with Vue
 
 ## Prerequisites
 
